@@ -5,7 +5,6 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.0">
-<meta name="author" content="If clients of whoas library don't have any whoas configuration, the whoas factory will create">
 <title>Default behavior</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic|Noto+Serif:400,400italic,700,700italic|Droid+Sans+Mono:400">
 <style>
@@ -503,33 +502,45 @@ table.CodeRay td.code>pre{padding:0}
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
-<h1>Default behavior</h1>
-<div class="details">
-<span id="author" class="author">If clients of whoas library don't have any whoas configuration, the whoas factory will create</span><br>
-<span id="revdate">InMemoryQueue and SequentialHookRunner</span>
-</div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
-<ul class="sectlevel0">
+<ul class="sectlevel1">
+<li><a href="#_default_behavior">Default behavior</a></li>
 <li><a href="#_library_configuration">Library Configuration</a></li>
 </ul>
 </div>
 </div>
 <div id="content">
-<h1 id="_library_configuration" class="sect0">Library Configuration</h1>
+<div class="sect1">
+<h2 id="_default_behavior">Default behavior</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If clients of whoas library don&#8217;t have any whoas configuration, the whoas factory will create
+InMemoryQueue that is a simple in memory FIFO with non blocking push and blocking pop operations and
+SequentialHookRunner that has run loop around queue pop and publishes the hook requests.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_library_configuration">Library Configuration</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>The clients of whoas library can add "whoas" configuration to build queue and runner of their choice.
 See the example below</p>
 </div>
-<div class="paragraph">
-<p>whos:
+<div class="listingblock">
+<div class="content">
+<pre>whoas:
   queueType: "com.github.lookout.whoas.Queue"
-  runnerType: "com.github.lookout.whoas.SequentialHookRunner"</p>
+  runnerType: "com.github.lookout.whoas.SequentialHookRunner"</pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-03-18 10:18:32 EDT
+Last updated 2015-03-18 08:48:36 PDT
 </div>
 </div>
 </body>

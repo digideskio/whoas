@@ -2,7 +2,7 @@
 <html>
 <head>
 
-<title>com.github.lookout.whoas (whoas 0.1.2 API)</title>
+<title>com.github.lookout.whoas (whoas 0.1.4 API)</title>
 <meta name="keywords" content="com.github.lookout.whoas package">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel ="stylesheet" TYPE="text/css" HREF="../../../../stylesheet.css" title="Style">
@@ -11,7 +11,7 @@
 <script type="text/javascript">
 function windowTitle()
 {
-    parent.document.title="com.github.lookout.whoas (whoas 0.1.2 API)";
+    parent.document.title="com.github.lookout.whoas (whoas 0.1.4 API)";
 }
 </script>
 <noscript>
@@ -57,6 +57,33 @@ function windowTitle()
 
 <div class="contentContainer">
 
+
+    <div class="summary">
+        <ul class="blockList">
+            <li class="blockList">
+                <table border="0" cellpadding="3" cellspacing="0" summary="Interface Summary">
+                    <caption><span>Interface Summary</span><span class="tabEnd">&nbsp;</span></caption>
+                    <tbody>
+                    <tr>
+                        <th class="colFirst" scope="col">Interface</th>
+                        <th class="colLast" scope="col">Description</th>
+                    </tr>
+<tr class="altColor">
+                            <td class="colOne">
+                                <strong><a href="WhoasConfiguration.html" title="class in com/github/lookout/whoas">
+                                    WhoasConfiguration
+                                </a></strong>
+                            </td>
+                            <td>The interface to create the whoas factory based on configuration
+ The client of whoas will call with the configuration to create the whoas factory.</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </li>
+            </ul>
+        </div>
+    
 
 
 
@@ -119,6 +146,16 @@ function windowTitle()
                             </td>
                             <td>The SequentialHookRunner is will dequeue HookRequest items from the
  configured AbstractHookQueue and publish those webhooks sequentially.</td>
+                        </tr>
+<tr class="altColor">
+                            <td class="colOne">
+                                <strong><a href="WhoasFactory.html" title="class in com/github/lookout/whoas">
+                                    WhoasFactory
+                                </a></strong>
+                            </td>
+                            <td>This factory will allow clients of whoas to build
+  different queues like in memory, persistent etc and runners
+  like sequential.</td>
                         </tr>
 
                     </tbody>
