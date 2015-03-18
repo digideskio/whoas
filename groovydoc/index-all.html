@@ -160,10 +160,6 @@ if (location.href.indexOf('is-external=true') == -1) {
 <h2 class="title">G</h2>
 <dl>
 
-<dt><span class="strong"><a href="com/github/lookout/whoas/RedisClientFactory.html#getInstance()" title="Method in RedisClientFactory">getInstance()</a></span> - Method in <a href="com/github/lookout/whoas/RedisClientFactory.html">RedisClientFactory</a>
-</dt><dd> <div class="block"></div></dd>
-<dt><span class="strong"><a href="com/github/lookout/whoas/RedisClientFactory.html#getJedis()" title="Method in RedisClientFactory">getJedis()</a></span> - Method in <a href="com/github/lookout/whoas/RedisClientFactory.html">RedisClientFactory</a>
-</dt><dd> <div class="block"></div></dd>
 <dt><span class="strong"><a href="com/github/lookout/whoas/AbstractHookRunner.html#getPublisher()" title="Method in AbstractHookRunner">getPublisher()</a></span> - Method in <a href="com/github/lookout/whoas/AbstractHookRunner.html">AbstractHookRunner</a>
 </dt><dd> <div class="block"></div></dd>
 <dt><span class="strong"><a href="com/github/lookout/whoas/AbstractHookQueue.html#getSize()" title="Method in AbstractHookQueue">getSize()</a></span> - Method in <a href="com/github/lookout/whoas/AbstractHookQueue.html">AbstractHookQueue</a>
@@ -272,7 +268,7 @@ if (location.href.indexOf('is-external=true') == -1) {
 <dt><span class="strong"><a href="com/github/lookout/whoas/InMemoryQueue.html#push(com.github.lookout.whoas.HookRequest)" title="Method in InMemoryQueue">push(HookRequest)</a></span> - Method in <a href="com/github/lookout/whoas/InMemoryQueue.html">InMemoryQueue</a>
 </dt><dd> <div class="block">Attempt to insert the request into the queue</div></dd>
 <dt><span class="strong"><a href="com/github/lookout/whoas/RedisQueue.html#push(com.github.lookout.whoas.HookRequest)" title="Method in RedisQueue">push(HookRequest)</a></span> - Method in <a href="com/github/lookout/whoas/RedisQueue.html">RedisQueue</a>
-</dt><dd> <div class="block">Attempt to insert the request into the queue</div></dd>
+</dt><dd> <div class="block">The blpop returns list of strings (key and value)</div></dd>
 </dl>
 
     
@@ -289,14 +285,10 @@ if (location.href.indexOf('is-external=true') == -1) {
 <h2 class="title">R</h2>
 <dl>
 
-<dt><span class="strong"><a href="com/github/lookout/whoas/RedisClientFactory.html" title="Class in com.github.lookout.whoas">RedisClientFactory</a></span> - Class in <a href="./com/github/lookout/whoas/package-summary.html">com.github.lookout.whoas</a>
-</dt><dd><div class="block"></div></dd>
 <dt><span class="strong"><a href="com/github/lookout/whoas/RedisQueue.html" title="Class in com.github.lookout.whoas">RedisQueue</a></span> - Class in <a href="./com/github/lookout/whoas/package-summary.html">com.github.lookout.whoas</a>
 </dt><dd><div class="block">A redis queue that offers distributed and persistent queue</div></dd>
 <dt><span class="strong"><a href="com/github/lookout/whoas/RedisQueue.html#RedisQueue()" title="Constructor in RedisQueue">RedisQueue()</a></span> - Constructor in <a href="com/github/lookout/whoas/RedisQueue.html">RedisQueue</a>
 </dt><dd> <div class="block">Default constructor</div></dd>
-<dt><span class="strong"><a href="com/github/lookout/whoas/RedisClientFactory.html#returnJedis(redis.clients.jedis.Jedis)" title="Method in RedisClientFactory">returnJedis(Jedis)</a></span> - Method in <a href="com/github/lookout/whoas/RedisClientFactory.html">RedisClientFactory</a>
-</dt><dd> <div class="block"></div></dd>
 <dt><span class="strong"><a href="com/github/lookout/whoas/AbstractHookRunner.html#run()" title="Method in AbstractHookRunner">run()</a></span> - Method in <a href="com/github/lookout/whoas/AbstractHookRunner.html">AbstractHookRunner</a>
 </dt><dd> <div class="block">Block forever and run the runner's runloop.</div></dd>
 <dt><span class="strong"><a href="com/github/lookout/whoas/SequentialHookRunner.html#run()" title="Method in SequentialHookRunner">run()</a></span> - Method in <a href="com/github/lookout/whoas/SequentialHookRunner.html">SequentialHookRunner</a>
@@ -315,20 +307,16 @@ if (location.href.indexOf('is-external=true') == -1) {
 </dt><dd> <div class="block">Determine whether this response meets our criteria for retry</div></dd>
 <dt><span class="strong"><a href="com/github/lookout/whoas/AbstractHookQueue.html#start()" title="Method in AbstractHookQueue">start()</a></span> - Method in <a href="com/github/lookout/whoas/AbstractHookQueue.html">AbstractHookQueue</a>
 </dt><dd> <div class="block"></div></dd>
-<dt><span class="strong"><a href="com/github/lookout/whoas/RedisClientFactory.html#start(java.lang.String, java.lang.Integer)" title="Method in RedisClientFactory">start(String, Integer)</a></span> - Method in <a href="com/github/lookout/whoas/RedisClientFactory.html">RedisClientFactory</a>
-</dt><dd> <div class="block"></div></dd>
 <dt><span class="strong"><a href="com/github/lookout/whoas/RedisQueue.html#start()" title="Method in RedisQueue">start()</a></span> - Method in <a href="com/github/lookout/whoas/RedisQueue.html">RedisQueue</a>
-</dt><dd> <div class="block">Setup the Redis client factory</div></dd>
+</dt><dd> <div class="block">Setup the Redis client</div></dd>
 <dt><span class="strong"><a href="com/github/lookout/whoas/AbstractHookQueue.html#started" title="Field in AbstractHookQueue">started</a></span> - Field in <a href="com/github/lookout/whoas/AbstractHookQueue.html">AbstractHookQueue</a>
 </dt><dd> <div class="block"></div></dd>
 <dt><span class="strong"><a href="com/github/lookout/whoas/AbstractHookQueue.html#stop()" title="Method in AbstractHookQueue">stop()</a></span> - Method in <a href="com/github/lookout/whoas/AbstractHookQueue.html">AbstractHookQueue</a>
 </dt><dd> <div class="block"></div></dd>
 <dt><span class="strong"><a href="com/github/lookout/whoas/AbstractHookRunner.html#stop()" title="Method in AbstractHookRunner">stop()</a></span> - Method in <a href="com/github/lookout/whoas/AbstractHookRunner.html">AbstractHookRunner</a>
 </dt><dd> <div class="block">Tell the runloop to stop</div></dd>
-<dt><span class="strong"><a href="com/github/lookout/whoas/RedisClientFactory.html#stop()" title="Method in RedisClientFactory">stop()</a></span> - Method in <a href="com/github/lookout/whoas/RedisClientFactory.html">RedisClientFactory</a>
-</dt><dd> <div class="block"></div></dd>
 <dt><span class="strong"><a href="com/github/lookout/whoas/RedisQueue.html#stop()" title="Method in RedisQueue">stop()</a></span> - Method in <a href="com/github/lookout/whoas/RedisQueue.html">RedisQueue</a>
-</dt><dd> <div class="block">Stop the Redis client factory</div></dd>
+</dt><dd> <div class="block">Setup jedis pool</div></dd>
 </dl>
 
     
@@ -366,6 +354,8 @@ if (location.href.indexOf('is-external=true') == -1) {
   like sequential.</div></dd>
 <dt><span class="strong"><a href="com/github/lookout/whoas/WhoasQueueConfig.html" title="Class in com.github.lookout.whoas">WhoasQueueConfig</a></span> - Class in <a href="./com/github/lookout/whoas/package-summary.html">com.github.lookout.whoas</a>
 </dt><dd><div class="block">Whoas Queue Configuration</div></dd>
+<dt><span class="strong"><a href="com/github/lookout/whoas/RedisQueue.html#withRedis(groovy.lang.Closure)" title="Method in RedisQueue">withRedis(Closure)</a></span> - Method in <a href="com/github/lookout/whoas/RedisQueue.html">RedisQueue</a>
+</dt><dd> <div class="block"></div></dd>
 </dl>
 
     
