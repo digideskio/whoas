@@ -531,7 +531,10 @@ See the example below</p>
 <div class="listingblock">
 <div class="content">
 <pre>whoas:
-  queueType: "com.github.lookout.whoas.Queue"
+  queue:
+    type: "com.github.lookout.whoas.RedisQueue"
+    hostname: "localhost"
+    port: 6379
   runnerType: "com.github.lookout.whoas.SequentialHookRunner"</pre>
 </div>
 </div>
@@ -540,7 +543,7 @@ See the example below</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-03-18 08:48:36 PDT
+Last updated 2015-03-18 12:54:19 EDT
 </div>
 </div>
 </body>
