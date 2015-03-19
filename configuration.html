@@ -528,11 +528,38 @@ SequentialHookRunner that has run loop around queue pop and publishes the hook r
 <p>The clients of whoas library can add "whoas" configuration to build queue and runner of their choice.
 See the example below</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>queue: configure type and queue specific parameters</p>
+<div class="ulist">
+<ul>
+<li>
+<p>type: full classname for the queue class defined in whoas  (e.g. com.github.lookout.whoas.InMemoryQueue)</p>
+</li>
+<li>
+<p>key: key of the list data type (currently applies to redis)</p>
+</li>
+<li>
+<p>hostname: hostname of the distributed queue server (currently applies to redis)</p>
+</li>
+<li>
+<p>port: port of the distributed queue server (currently applies to redis)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>runnerType: full classname for the runner class defined in whoas</p>
+</li>
+</ul>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre>whoas:
   queue:
     type: "com.github.lookout.whoas.RedisQueue"
+    key: "queue"
     hostname: "localhost"
     port: 6379
   runnerType: "com.github.lookout.whoas.SequentialHookRunner"</pre>
@@ -543,7 +570,7 @@ See the example below</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-03-18 16:27:04 PDT
+Last updated 2015-03-19 17:23:59 EDT
 </div>
 </div>
 </body>
