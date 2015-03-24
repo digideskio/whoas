@@ -127,8 +127,7 @@ class RedisQueue extends AbstractHookQueue {
                     action.call(request)
                 } catch (Exception ex) {
                     /* Put this back on the front of the queue */
-                    logger.info("\"Pop\" on redis queue failed with an exception: " +
-                            ex.getMessage() + ", pushing it back on front of the queue")
+                    logger.info("\"Pop\" on redis queue failed, pushing it back on front of the queue", ex)
                     redisClient.lpush(this.queueConfig.key, messages.get(1))
                     throw ex
                 }
