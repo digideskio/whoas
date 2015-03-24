@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import redis.clients.jedis.Jedis
 import redis.clients.jedis.JedisPool
 import redis.clients.jedis.JedisPoolConfig
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 
 /**
@@ -15,6 +17,7 @@ class RedisQueue extends AbstractHookQueue {
     private static Integer maxActiveConnections = 10
     private static Integer maxIdleConnections = 5
     private static Integer minIdleConnections = 1
+    private Logger logger = LoggerFactory.getLogger(RedisQueue.class)
 
     /**
      * Create the RedisQueue with valid config
@@ -49,6 +52,9 @@ class RedisQueue extends AbstractHookQueue {
     void start() {
         super.start()
 
+        logger.debug("Setting up redis queue \"${this.queueConfig.key}\" on the server " +
+                "\"${this.queueConfig.hostname}:${this.queueConfig.port}")
+
         /**
          * Setup jedis pool
          *
@@ -79,6 +85,7 @@ class RedisQueue extends AbstractHookQueue {
         pool = null
     }
 
+    /** Allocate redis client from the pool */
     Object withRedis(Closure closure) {
         Jedis redisClient = pool.resource
         try {
@@ -120,6 +127,8 @@ class RedisQueue extends AbstractHookQueue {
                     action.call(request)
                 } catch (Exception ex) {
                     /* Put this back on the front of the queue */
+                    logger.info("\"Pop\" on redis queue failed with an exception: " +
+                            ex.getMessage() + ", pushing it back on front of the queue")
                     redisClient.lpush(this.queueConfig.key, messages.get(1))
                     throw ex
                 }

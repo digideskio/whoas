@@ -2,12 +2,16 @@ package com.github.lookout.whoas
 
 import java.util.Queue
 import java.util.concurrent.LinkedBlockingQueue
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+
 
 /**
  * A simple in-memory queue that offers no persistence between process restarts
  */
 class InMemoryQueue extends AbstractHookQueue {
     private Queue<HookRequest> internalQueue
+    private Logger logger = LoggerFactory.getLogger(InMemoryQueue.class)
 
     /**
      * Create the InMemoryQueue from configuration
@@ -55,8 +59,12 @@ class InMemoryQueue extends AbstractHookQueue {
             action.call(item)
         }
         catch (Exception ex) {
+
             /* Put this back on the tail end of the queue */
+            logger.info("\"Pop\" on in-memory queue failed with an exception: " +
+                    ex.getMessage() + ", putting it back on tail-end")
             this.internalQueue.put(item)
+            throw ex
         }
         finally {
         }

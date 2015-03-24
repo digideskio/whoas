@@ -6,6 +6,8 @@ import javax.ws.rs.client.Entity
 import javax.ws.rs.client.Invocation
 import javax.ws.rs.core.Response
 import javax.ws.rs.ProcessingException
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 
 /**
@@ -22,12 +24,12 @@ class Publisher {
 
     private Client jerseyClient
     private int maxRetries
+    private Logger logger = LoggerFactory.getLogger(Publisher.class)
 
     Publisher() {
         this.jerseyClient = ClientBuilder.newClient()
         this.maxRetries = DEFAULT_MAX_RETRIES
     }
-
 
     /**
      * Publish the request using the appropriate backoff and retry logic
@@ -39,18 +41,18 @@ class Publisher {
         Invocation inv = buildInvocationFrom(request)
         try {
             response = inv.invoke()
-
-            /* LOG: response */
             String responseBody = response.readEntity(String.class)
         }
         catch (ProcessingException exc) {
-            /* LOG: warn on this exception */
+            logger.warn("\"POST\" to url: \"${request.url}\" " +
+                    "has failed with exception: " + exc.getMessage())
             retryableExc = true
         }
 
         if ((retryableExc) || (shouldRetry(response))) {
             if (request.retries >= this.maxRetries) {
-                /* TODO: Log that we're giving up on this request */
+                logger.error("Giving up on \"POST\" to url: \"${request.url}\" " +
+                        "after ${request.retries} retries")
                 return false
             }
             request.retries = (request.retries + 1)
@@ -58,9 +60,9 @@ class Publisher {
             return this.publish(request)
         }
 
+        logger.debug("\"POST\" to url: \"${request.url}\" succeeded, ${logger.name}, ${logger.debugEnabled}")
         return true
     }
-
 
     /**
      * Determine whether this response meets our criteria for retry
