@@ -143,7 +143,6 @@ class RedisQueueSpec extends Specification {
         queue.pop() { throw new Exception("Test Exception") }
 
         then:
-        thrown Exception
         queue.getSize() == 1
     }
 }

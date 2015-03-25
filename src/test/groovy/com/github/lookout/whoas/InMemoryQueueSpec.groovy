@@ -80,12 +80,12 @@ class InMemoryQueueSpecWithMessage extends InMemoryQueueWithGivenQueueSpec {
     }
 
     def "pop() should requeue on exceptions"() {
-        setup:
+        when:
         queue.pop {
             throw new Exception("Spock'd!")
         }
 
-        expect:
+        then:
         queue.size == 1
     }
 
