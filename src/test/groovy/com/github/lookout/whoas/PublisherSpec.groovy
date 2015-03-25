@@ -16,7 +16,7 @@ class PublisherSpec extends Specification {
     def "publish() to a invalid host should fail"() {
         given:
         publisher = Spy(Publisher)
-        HookRequest req = new HookRequest('http://spock.invalid', '')
+        HookRequest req = new HookRequest('http://spock.invalid', '', '')
         /* stub out the original backoffSleep so we don't actually sleep our
          * tests */
         _ * publisher.backoffSleep(_) >> null
@@ -49,7 +49,7 @@ class PublisherSpec extends Specification {
         given:
         Invocation inv
         HookRequest request = new HookRequest('http://example.com',
-                                                'magic post data!')
+                                                'magic post data!','appname.event1.v1')
 
         when:
         inv = publisher.buildInvocationFrom(request)
