@@ -16,7 +16,7 @@ class PublisherSpec extends Specification {
     def "publish() to a invalid host should fail"() {
         given:
         publisher = Spy(Publisher)
-        HookRequest req = new HookRequest('http://spock.invalid', '')
+        HookRequest req = new HookRequest('http://spock.invalid', '', '')
         /* stub out the original backoffSleep so we don't actually sleep our
          * tests */
         _ * publisher.backoffSleep(_) >> null
@@ -49,7 +49,33 @@ class PublisherSpec extends Specification {
         given:
         Invocation inv
         HookRequest request = new HookRequest('http://example.com',
-                                                'magic post data!')
+                                                'magic post data!','application/vnd.appname.event1.v1+json')
+
+        when:
+        inv = publisher.buildInvocationFrom(request)
+
+        then:
+        inv instanceof Invocation
+    }
+
+    def "buildInvocationFrom() should create a valid Jersey Invocation when content type is null"() {
+        given:
+        Invocation inv
+        HookRequest request = new HookRequest('http://example.com',
+                'magic post data!', null)
+
+        when:
+        inv = publisher.buildInvocationFrom(request)
+
+        then:
+        inv instanceof Invocation
+    }
+
+    def "buildInvocationFrom() should create a valid Jersey Invocation when content type is empty"() {
+        given:
+        Invocation inv
+        HookRequest request = new HookRequest('http://example.com',
+                'magic post data!', '')
 
         when:
         inv = publisher.buildInvocationFrom(request)

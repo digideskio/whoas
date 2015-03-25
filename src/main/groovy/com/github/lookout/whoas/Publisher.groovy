@@ -21,12 +21,10 @@ class Publisher {
     private final int DEFAULT_BACKOFF_MAX_MILLIS = (10 * 1000)
 
     private Client jerseyClient
-    private String contentType
     private int maxRetries
 
     Publisher() {
         this.jerseyClient = ClientBuilder.newClient()
-        this.contentType = DEFAULT_CONTENT_TYPE
         this.maxRetries = DEFAULT_MAX_RETRIES
     }
 
@@ -105,7 +103,7 @@ class Publisher {
         return jerseyClient.target(request.url)
                     .request()
                     .buildPost(Entity.entity(request.postData,
-                                             this.contentType))
+                                             request.contentType? request.contentType: DEFAULT_CONTENT_TYPE))
     }
 
 }

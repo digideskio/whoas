@@ -19,7 +19,7 @@ class SequentialHookRunnerSpec extends Specification {
         given:
         Publisher p = Mock(Publisher)
         SequentialHookRunner runner = new SequentialHookRunner(queue, p)
-        HookRequest request = new HookRequest('http://spock.invalid', '{}')
+        HookRequest request = new HookRequest('http://spock.invalid', '{}', '')
         1 * p.publish(request) >> {
             /* when the publisher is called, let's disable our runner's runloop
              * so we actually exit the test!
