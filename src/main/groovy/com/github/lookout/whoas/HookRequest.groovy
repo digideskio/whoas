@@ -19,7 +19,7 @@ class HookRequest {
     private DateTime deliverAfter
 
     @JsonProperty
-    private String contentTypeParam
+    private String contentType
 
     /** Constructor for Jackson */
     HookRequest() { }
@@ -28,10 +28,10 @@ class HookRequest {
      * Default constructor for creating a simple HookRequest with a URL and the
      * POST data to be delivered to that URL
      */
-    HookRequest(String hookUrl, String hookData, String contentTypeParam) {
+    HookRequest(String hookUrl, String hookData, String contentType) {
         this.retries = 0
         this.url = hookUrl
         this.postData = hookData
-        this.contentTypeParam = contentTypeParam
+        this.contentType = contentType
     }
 }

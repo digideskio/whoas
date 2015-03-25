@@ -13,6 +13,7 @@ import javax.ws.rs.ProcessingException
  * request logic for Whoas
  */
 class Publisher {
+    private final String DEFAULT_CONTENT_TYPE = 'application/json'
     /** Maximum number of failures we will retry on */
     private final int DEFAULT_MAX_RETRIES = 5
 
@@ -102,7 +103,7 @@ class Publisher {
         return jerseyClient.target(request.url)
                     .request()
                     .buildPost(Entity.entity(request.postData,
-                                             "application/vnd." + request.contentTypeParam + "+json"))
+                                             request.contentType? request.contentType: DEFAULT_CONTENT_TYPE))
     }
 
 }

@@ -49,7 +49,33 @@ class PublisherSpec extends Specification {
         given:
         Invocation inv
         HookRequest request = new HookRequest('http://example.com',
-                                                'magic post data!','appname.event1.v1')
+                                                'magic post data!','application/vnd.appname.event1.v1+json')
+
+        when:
+        inv = publisher.buildInvocationFrom(request)
+
+        then:
+        inv instanceof Invocation
+    }
+
+    def "buildInvocationFrom() should create a valid Jersey Invocation when content type is null"() {
+        given:
+        Invocation inv
+        HookRequest request = new HookRequest('http://example.com',
+                'magic post data!', null)
+
+        when:
+        inv = publisher.buildInvocationFrom(request)
+
+        then:
+        inv instanceof Invocation
+    }
+
+    def "buildInvocationFrom() should create a valid Jersey Invocation when content type is empty"() {
+        given:
+        Invocation inv
+        HookRequest request = new HookRequest('http://example.com',
+                'magic post data!', '')
 
         when:
         inv = publisher.buildInvocationFrom(request)
