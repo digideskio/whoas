@@ -91,6 +91,23 @@ check.dependsOn groovydoc
 ////////////////////////////////////////////////////////////////////////////////
 // PUBLISHING TASKS
 ////////////////////////////////////////////////////////////////////////////////
+
+/* Add the sources jar to the list of artifacts to publish */
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task groovydocJar(type: Jar, dependsOn: groovydoc) {
+    classifier = 'groovydoc'
+    from groovydoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives groovydocJar
+}
+
 task publishDocs(type: Exec) {
     /* If for whatever reason you need to force-push the gh-pages branch this
      * command will work:
