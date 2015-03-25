@@ -63,7 +63,6 @@ class InMemoryQueue extends AbstractHookQueue {
             /* Put this back on the tail end of the queue */
             logger.info("\"Pop\" on in-memory queue failed, putting it back on the tail-end", ex)
             this.internalQueue.put(item)
-            throw ex
         }
         finally {
         }
