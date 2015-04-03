@@ -28,12 +28,12 @@ abstract class AbstractHookQueue {
      * Return the size of the queue, may not be implemented by some providers
      * in which case it will return -1
      */
-    abstract Long getSize()
+    abstract int getSize()
 
     /**
      *
      */
-    abstract void pop(Closure action)
+    abstract void pop(QueueAction action) throws Exception
 
     /**
      *

@@ -36,7 +36,7 @@ class RedisQueue extends AbstractHookQueue {
     /**
      * Return the number of elements in the queue
      */
-    Long getSize() {
+    int getSize() {
         if (!this.started) {
             throw new Exception("Queue must be started before this operation is invoked")
         }
@@ -103,7 +103,7 @@ class RedisQueue extends AbstractHookQueue {
      * If the Closure throws an exception, the dequeued item will be returned
      * to the tail end of the queue
      */
-    void pop(Closure action) {
+    void pop(QueueAction action) {
         if (action == null) {
             throw new Exception("Must provide a Closure to RedisQueue.pop()")
         }
