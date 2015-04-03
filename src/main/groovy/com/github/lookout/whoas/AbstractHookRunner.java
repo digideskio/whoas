@@ -24,7 +24,7 @@ public abstract class AbstractHookRunner {
     }
 
     /** Block forever and run the runner's runloop. */
-    public abstract void run();
+    public abstract void run() throws Exception;
 
     /**
      * Tell the runloop to stop
