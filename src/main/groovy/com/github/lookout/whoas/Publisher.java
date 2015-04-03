@@ -90,7 +90,7 @@ public class Publisher {
      * Sleep the current thread the appropriate amount of time for the
      * attemptNumber
      */
-    void backoffSleep(Long attemptNumber) throws InterruptedException  {
+    void backoffSleep(int attemptNumber) throws InterruptedException  {
         int naptime = (int)(Math.pow(DEFAULT_BACKOFF_MILLIS, attemptNumber));
         if (naptime > DEFAULT_BACKOFF_MAX_MILLIS) {
             naptime = DEFAULT_BACKOFF_MAX_MILLIS;
