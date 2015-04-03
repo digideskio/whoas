@@ -3,3 +3,4 @@ build/
 whoas.iml
 *.sw*
 .gradle/
+.classpath
