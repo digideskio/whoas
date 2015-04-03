@@ -5,21 +5,20 @@ import org.joda.time.DateTime
 
 
 class HookRequest {
+    @JsonProperty
+    public Long retries
 
     @JsonProperty
-    private Long retries
+    public String url
 
     @JsonProperty
-    private String url
+    public String postData
 
     @JsonProperty
-    private String postData
+    public DateTime deliverAfter
 
     @JsonProperty
-    private DateTime deliverAfter
-
-    @JsonProperty
-    private String contentType
+    public String contentType
 
     /** Constructor for Jackson */
     HookRequest() { }
