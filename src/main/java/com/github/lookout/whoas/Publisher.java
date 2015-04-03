@@ -34,6 +34,10 @@ public class Publisher {
     /**
      * Publish the request using the appropriate backoff and retry logic
      * defined in the Whoas documentation
+     *
+     * @param request a valid {@code HookRequest}
+     * @return true if we were able to invoke the {@code HookRequest}
+     * @throws InterruptedException thrown if our attempts to backoff were interrupted
      */
     public Boolean publish(HookRequest request) throws InterruptedException {
         Response response = null;
@@ -66,6 +70,9 @@ public class Publisher {
 
     /**
      * Determine whether this response meets our criteria for retry
+     *
+     * @param response {@code Response} which has a status to determine our retry
+     * @return true if the caller should continue retrying the request
      */
     public Boolean shouldRetry(Response response) {
         if (response == null) {
@@ -89,6 +96,9 @@ public class Publisher {
     /**
      * Sleep the current thread the appropriate amount of time for the
      * attemptNumber
+     *
+     * @param attemptNumber which attempt we're so we can exponentially sleep
+     * @throws InterruptedException thrown if our sleep is interrupted
      */
     void backoffSleep(int attemptNumber) throws InterruptedException  {
         int naptime = (int)(Math.pow(DEFAULT_BACKOFF_MILLIS, attemptNumber));
@@ -100,6 +110,7 @@ public class Publisher {
 
     /**
      * Build the JerseyInvocation instance needed to execute the webhook
+     *
      */
     private Invocation buildInvocationFrom(HookRequest request) {
         String contentType = DEFAULT_CONTENT_TYPE;

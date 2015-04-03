@@ -16,7 +16,12 @@ public class SequentialHookRunner extends AbstractHookRunner {
         super(hookQueue, hookPublisher);
     }
 
-    /** Execute an infinitely blocking single-threaded runloop */
+    /**
+     * Execute an infinitely blocking single-threaded runloop
+     *
+     * @throws Exception if we cannot execute or catch exceptions from the
+     *  underlying {@code QueueAction}
+     */
     public void run() throws Exception {
         while (this.keepGoing) {
             this.queue.pop(new QueueAction() {

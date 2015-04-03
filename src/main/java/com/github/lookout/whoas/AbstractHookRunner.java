@@ -23,7 +23,10 @@ public abstract class AbstractHookRunner {
         return this.publisher;
     }
 
-    /** Block forever and run the runner's runloop. */
+    /** Block forever and run the runner's runloop.
+     *
+     * @throws Exception uncaught exceptions from the {@code QueueAction}
+     */
     public abstract void run() throws Exception;
 
     /**

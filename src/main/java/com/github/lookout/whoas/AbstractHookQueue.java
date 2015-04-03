@@ -23,18 +23,19 @@ public abstract class AbstractHookQueue {
     }
 
     /**
-     * Return the size of the queue, may not be implemented by some providers
-     * in which case it will return -1
+     * @return Size of the queue, if not implemented by the provider, returns -1
      */
     public abstract int getSize();
 
     /**
-     *
+     * @param action a {@code QueueAction} to invoke
+     * @throws Exception the underlying {@code QueueAction} may throw any form of exception
      */
     public abstract void pop(QueueAction action) throws Exception;
 
     /**
-     *
+     * @param request A valid {@code HookRequest}
+     * @return true if the {@code HookRequest} was successfully added to the queue
      */
     public abstract Boolean push(HookRequest request);
 }

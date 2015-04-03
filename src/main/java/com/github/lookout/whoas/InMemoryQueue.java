@@ -15,6 +15,8 @@ public class InMemoryQueue extends AbstractHookQueue {
 
     /**
      * Create the InMemoryQueue from configuration
+     *
+     * @param queueConfig not used
      */
     public InMemoryQueue(WhoasQueueConfig queueConfig) {
         this.internalQueue = new LinkedBlockingQueue<HookRequest>();
@@ -29,6 +31,8 @@ public class InMemoryQueue extends AbstractHookQueue {
 
     /**
      * Create the InMemoryQueue with the given Queue object
+     *
+     * @param queue aubclass of {@code BlockingQueue} which we will use instead of the default internal memory queue
      */
     public InMemoryQueue(BlockingQueue<HookRequest> queue) {
         this.internalQueue = queue;
@@ -36,6 +40,8 @@ public class InMemoryQueue extends AbstractHookQueue {
 
     /**
      * Return the number of elements in the queue
+     *
+     * @return number of elements in the queue
      */
     public int getSize() {
         return this.internalQueue.size();
