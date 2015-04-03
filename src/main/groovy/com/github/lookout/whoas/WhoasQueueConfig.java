@@ -1,6 +1,6 @@
-package com.github.lookout.whoas
+package com.github.lookout.whoas;
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  *  Whoas Queue Configuration
@@ -13,7 +13,7 @@ public class WhoasQueueConfig {
      *  Default queue in whoas is InMemoryQueue
      */
     @JsonProperty
-    String type = "com.github.lookout.whoas.InMemoryQueue"
+    public String type = "com.github.lookout.whoas.InMemoryQueue";
 
     /**
      *  key to idenitfy the distributed queue
@@ -21,7 +21,7 @@ public class WhoasQueueConfig {
      *  Default key is "queue"
      */
     @JsonProperty
-    String key = "queue"
+    public String key = "queue";
 
     /**
      *  Hostname of the distributed queue server
@@ -29,7 +29,7 @@ public class WhoasQueueConfig {
      *  Default hostname is localhost
      */
     @JsonProperty
-    String hostname = "localhost"
+    public String hostname = "localhost";
 
     /**
      *  Port number of the distributed queue server
@@ -37,6 +37,6 @@ public class WhoasQueueConfig {
      *  Default port is 6379 (i.e. redis)
      */
     @JsonProperty
-    Integer port = 6379
+    public Integer port = 6379;
 
 }

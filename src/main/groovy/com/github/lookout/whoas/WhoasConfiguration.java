@@ -1,7 +1,6 @@
-package com.github.lookout.whoas
+package com.github.lookout.whoas;
 
-
-import io.dropwizard.Configuration
+import io.dropwizard.Configuration;
 
 /**
  * The interface to create the whoas factory based on configuration
@@ -9,5 +8,5 @@ import io.dropwizard.Configuration
  * @param < T > Configuration class that extends dropwizard configuration
  */
 public interface WhoasConfiguration<T extends Configuration> {
-    WhoasFactory getWhoasFactory(T configuration)
+    public WhoasFactory getWhoasFactory(T configuration);
 }
