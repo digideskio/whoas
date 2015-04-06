@@ -24,8 +24,9 @@ public abstract class AbstractHookQueue {
 
     /**
      * @return Size of the queue, if not implemented by the provider, returns -1
+     * @throws Exception implementors may throw Exceptions
      */
-    public abstract int getSize();
+    public abstract int getSize() throws Exception;
 
     /**
      * @param action a {@code QueueAction} to invoke
@@ -36,6 +37,7 @@ public abstract class AbstractHookQueue {
     /**
      * @param request A valid {@code HookRequest}
      * @return true if the {@code HookRequest} was successfully added to the queue
+     * @throws Exception implementors may throw Exceptions
      */
-    public abstract Boolean push(HookRequest request);
+    public abstract Boolean push(HookRequest request) throws Exception;
 }

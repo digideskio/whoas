@@ -49,14 +49,14 @@ public class Publisher {
             String responseBody = response.readEntity(String.class);
         }
         catch (ProcessingException exc) {
-            logger.warn("\"POST\" to url: \"${request.url}\" failed", exc);
+            logger.warn("POST to url \"{}\" failed", request.url, exc);
             retryableExc = true;
         }
 
         if ((retryableExc) || (shouldRetry(response))) {
             if (request.retries >= this.maxRetries) {
-                logger.error("Giving up on \"POST\" to url: \"${request.url}\" " +
-                        "after ${request.retries} retries");
+                logger.error("Giving up on POST to url \"{}\" after {} retries",
+                             request.url, request.retries);
                 return false;
             }
             request.retries = (request.retries + 1);
@@ -64,7 +64,7 @@ public class Publisher {
             return this.publish(request);
         }
 
-        logger.debug("\"POST\" to url: \"${request.url}\" succeeded");
+        logger.debug("POST to url \"{}\" succeeded", request.url);
         return true;
     }
 
@@ -80,7 +80,8 @@ public class Publisher {
         }
 
         /* Enhance your calm and try again */
-        if (response.getStatus() == 420) {
+        if ((response.getStatus() == 420) ||
+            (response.getStatus() == 429)) {
             return true;
         }
 

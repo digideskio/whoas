@@ -40,6 +40,7 @@ class PublisherSpec extends Specification {
         201    | false
         400    | false
         420    | true
+        429    | true
         500    | true
         599    | true
     }
