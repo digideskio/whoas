@@ -6,11 +6,11 @@ plugins {
 
 apply plugin: 'maven'
 apply plugin: 'groovy'
+apply plugin: 'java'
 apply plugin: 'eclipse'
 
-
 group = 'com.github.lookout'
-version = '0.2.0'
+version = '0.3.0'
 description = 'A server-side webhook publishing library'
 
 sourceCompatibility = '1.6'
@@ -21,14 +21,12 @@ targetCompatibility = '1.6'
 ////////////////////////////////////////////////////////////////////////////////
 repositories {
     jcenter()
-    mavenCentral()
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // DEPENDENCY MANAGEMENT
 ////////////////////////////////////////////////////////////////////////////////
 dependencies {
-    compile 'org.codehaus.groovy:groovy-all:2.4.0+'
     compile 'org.glassfish.jersey.core:jersey-client:2.6+'
 
     /* Needed for serializing requests to JSON and back */
@@ -37,13 +35,15 @@ dependencies {
     compile 'joda-time:joda-time:2.6+'
     /* Needed for redis client */
     compile 'redis.clients:jedis:2.6+'
-    testCompile 'com.fiftyonred:mock-jedis:0.4.0'
     /* Needed for logback */
     compile 'org.slf4j:slf4j-api:1.7.10'
     compile 'ch.qos.logback:logback-classic:1.1.2'
 
+    testCompile 'org.codehaus.groovy:groovy-all:2.4.0+'
     testCompile 'org.spockframework:spock-core:0.7-groovy-2.0'
     testCompile 'cglib:cglib-nodep:2.2.+'
+    /* Redis-support testing code */
+    testCompile 'com.fiftyonred:mock-jedis:0.4.0'
 
     [
             'dropwizard-core',
@@ -67,6 +67,7 @@ test {
         events "passed", "skipped", "failed", "standardOut", "standardError"
     }
 }
+assemble.dependsOn check
 ////////////////////////////////////////////////////////////////////////////////
 
 
@@ -83,12 +84,12 @@ asciidoctor {
 }
 check.dependsOn asciidoctor
 
-groovydoc {
-    destinationDir file('docs/html5/groovydoc')
+javadoc {
+    destinationDir file('docs/html5/javadoc')
     shouldRunAfter test
 }
 
-check.dependsOn groovydoc
+check.dependsOn javadoc
 ////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -101,14 +102,15 @@ task sourcesJar(type: Jar, dependsOn: classes) {
     from sourceSets.main.allSource
 }
 
-task groovydocJar(type: Jar, dependsOn: groovydoc) {
-    classifier = 'groovydoc'
-    from groovydoc.destinationDir
+task javadocJar(type: Jar) {
+    dependsOn javadoc
+    classifier = 'javadoc'
+    from javadoc.destinationDir
 }
 
 artifacts {
     archives sourcesJar
-    archives groovydocJar
+    archives javadocJar
 }
 
 task publishDocs(type: Exec) {
