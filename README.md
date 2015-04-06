@@ -1,6 +1,7 @@
 # WHoaS
 
-[![Build Status](https://travis-ci.org/lookout/whoas.svg)](https://travis-ci.org/lookout/whoas)
+[![Build Status](https://travis-ci.org/lookout/whoas.svg)](https://travis-ci.org/lookout/whoas) 
+[![Download](https://api.bintray.com/packages/lookout/systems/whoas/images/download.svg) ](https://bintray.com/lookout/systems/whoas/_latestVersion)
 
 Web Hooks on a Service.
 
