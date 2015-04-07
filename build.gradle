@@ -13,8 +13,8 @@ group = 'com.github.lookout'
 version = '0.3.0'
 description = 'A server-side webhook publishing library'
 
-sourceCompatibility = '1.6'
-targetCompatibility = '1.6'
+sourceCompatibility = '1.7'
+targetCompatibility = '1.7'
 
 ////////////////////////////////////////////////////////////////////////////////
 // DEPENDENCY CONFIGURATION
